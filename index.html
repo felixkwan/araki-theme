@@ -485,7 +485,7 @@
     }
 
     .indexpage article .tags {
-        margin-top: 6px;
+        margin: 6px 0 22px 0;
         font-size: 0.9em;
     }
 
@@ -502,12 +502,17 @@
     article .tags a {
         padding: 4px 6px 6px 6px;
         border: 1px solid {color:Link};
-        transition: border,padding .25s ease;
+        transition: all .25s ease;
+        background-size: 200% 100%;
+        background-position: left bottom;
     }
 
     article .tags a:hover {
         padding: 4px 12px 6px 12px;
-        border: 1px solid {color:Hover};
+        border: 1px solid {color:Link Hover};
+        color: #fff;
+        background: {color:Link Hover};
+        background-position: right bottom;
     }
 
     .corner-button {
@@ -516,7 +521,7 @@
     }
 
     .corner-button:hover {
-        border: 1px solid {color:Hover};
+        border: 1px solid {color:Link Hover};
     }
 
     .indexpage .pagination-wrap {
@@ -526,6 +531,34 @@
 
     .indexpage .pagination li {
         display: inline-block;
+        background: transparent;
+        transition: all .25s ease;
+        position: relative;
+    }
+
+    .indexpage .pagination li a:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        display: block;
+        right: 0;
+        top: 50%;
+        background: {color:Link};
+        transition: width .25s ease;
+        -o-transition: width .25s ease;
+        -moz-transition: width .25s ease;
+        -webkit-transition: width .25s ease;
+    }
+
+    .indexpage .pagination li a:hover:before{
+        width: 100%;
+        left: 0;
+        background: {color:Link};
+    }
+
+    .indexpage .pagination li a:hover {
+        color: {color:Link};
     }
 
     .indexpage .pagination .previous-page {
@@ -594,6 +627,29 @@
         width: 100%;
     }
 
+    /* post-meta-btn */
+
+    .post-meta-btn li {
+        display: inline-block;
+        margin-right: 16px;
+    }
+
+    .post-meta-btn li .fas {
+        font-size: 26px;
+    }
+
+    .post-meta-btn .reblog-btn svg {
+        fill: {color:Link};
+        transition: all .25s ease;
+        -o-transition: all .25s ease;
+        -moz-transition: all .25s ease;
+        -webkit-transition: all .25s ease;
+    }
+
+    .post-meta-btn .reblog-btn:hover svg {
+        fill: {color:Link Hover};
+    }
+
     /* post-meta_permal */
 
     .post-meta_permal .date {
@@ -610,6 +666,32 @@
 
     .post-meta_permal .pagination_permal li {
         display: inline-block;
+        position: relative;
+    }
+
+    .post-meta_permal .pagination_permal li a:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        display: block;
+        right: 0;
+        top: 50%;
+        background: {color:Link};
+        transition: width .25s ease;
+        -o-transition: width .25s ease;
+        -moz-transition: width .25s ease;
+        -webkit-transition: width .25s ease;
+    }
+
+    .post-meta_permal .pagination_permal li a:hover:before {
+        width: 100%;
+        left: 0;
+        background: {color:Link};
+    }
+
+    .post-meta_permal .pagination_permal li a:hover {
+        color: {color:Link};
     }
 
     .pagination_permal .previous-post {
@@ -925,6 +1007,12 @@
 			<ul class="tags">
 			                    {block:Tags}<li><a href="{TagURL}" class="tag">#{Tag}</a></li>{/block:Tags}
 			                </ul>
+			<ul class="post-meta-btn">
+			    <li class="reblog-btn">{ReblogButton}</li>
+			    <li><a href="{Permalink}"><i class="fas fa-caret-right"></i></a></li>
+			    <li><a href=""><i class=""></i></a></li>
+			</ul>
+
 			{/block:IndexPage}
                     {/block:Date}
 
@@ -977,10 +1065,10 @@
                         <ul class="pagination">
 
                         {block:NextPage}
-                        <li class="previous-page"><a href="{NextPage}">Older Posts <i class="fas fa-caret-right"></i></a></li>
+                        <li class="previous-page"><a href="{NextPage}">Older Posts&nbsp;<i class="fas fa-caret-right"></i></a></li>
                         {/block:NextPage}
                         {block:PreviousPage}
-                        <li class="next-page"><a href="{PreviousPage}">Newer Posts</a></li>
+                        <li class="next-page"><a href="{PreviousPage}"><i class="fas fa-caret-left"></i>&nbsp;Newer Posts</a></li>
                         {/block:PreviousPage}
                         </ul>
 
