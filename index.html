@@ -651,17 +651,26 @@
     }
 
     /* footer */
-
     .footer-wrap {
-        margin: 60px 20px;
+        margin: 60px auto;
         padding: 0;
-        transition: margin .25 ease;
+        text-align: center;
     }
 
-    @media only screen and (min-width: 768px) {
-        .footer-wrap {
-            margin: 60px 30px;
-        }
+    /* social link */
+
+    .social-link {
+        height: 32px;
+        margin: 6px auto;
+    }
+
+    .social-link li {
+        display: inline-block;
+        margin-right: 12px;
+    }
+
+    .social-link li:last-child {
+        margin-right: 0;
     }
 
       {CustomCSS}
@@ -945,7 +954,7 @@
       <footer>
 
       <div class="footer-wrap">
-      <small>&copy; MORI</small>
+      <small>&copy; ARAKINEMA</small>
       <ul class="social-link">
 				{block:IfURLTwitter}
 					<li><a href="{text:URL Twitter}" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
