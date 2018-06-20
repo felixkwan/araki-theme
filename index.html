@@ -440,8 +440,40 @@
         background: #363636;
     }
 
+    article.type_quote .quote-author {
+        margin-top: 12px;
+        margin-left: 12px;
+    }
+
     article.type_link .share-link {
         text-decoration: underline;
+    }
+
+    article.type_chat .label {
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    article.type_answer .asker-wrapper {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    article.type_answer .asker-thumb {
+        display: inline-block;
+        margin-right: 12px;
+        padding: 6px 6px 0 6px;
+        border: 1px solid {color:Background};
+        float: left;
+    }
+
+    article.type_answer .asker {
+        padding-top: 3px;
+    }
+
+    article.type_answer .asker-question {
+        margin-top: 24px;
     }
 
     article .post-meta_home {
@@ -673,6 +705,15 @@
         margin-right: 0;
     }
 
+    @media only screen and (min-width: 768px) {
+        .about_me {
+            top: 48%;
+        }
+    }
+
+
+
+
       {CustomCSS}
     </style>
   </head>
@@ -681,6 +722,7 @@
     <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
     <div id="wrapper">
+
       <div id="container" class="clearfix">
 
       <!-- header -->
@@ -817,7 +859,7 @@
 
                     {block:Quote}
                     <!-- quote post -->
-                      <div class="{length}">
+                      <div class="{length} quote">
                         {Quote}
                       </div>
 
@@ -935,7 +977,7 @@
                         <ul class="pagination">
 
                         {block:NextPage}
-                        <li class="previous-page"><a href="{NextPage}">Older Posts</a></li>
+                        <li class="previous-page"><a href="{NextPage}">Older Posts <i class="fas fa-caret-right"></i></a></li>
                         {/block:NextPage}
                         {block:PreviousPage}
                         <li class="next-page"><a href="{PreviousPage}">Newer Posts</a></li>
