@@ -232,7 +232,7 @@
         z-index: 15;
         background: #363636;
         transition: width .25s ease;
-        -o-transsition: width .25s ease;
+        -o-transition: width .25s ease;
         -moz-transition: width .25s ease;
         -webkit-transition: width .25s ease;
     }
@@ -406,6 +406,7 @@
         top: 0;
         margin: 22px auto;
         overflow: hidden;
+        z-index: 12;
     }
 
     .nav-hidden {
@@ -429,7 +430,6 @@
         padding: 6px 0;
         margin: 0 20px 12px;
         border-bottom: 1px solid {color:Background};
-        z-index: 15;
     }
 
     .toggle-nav li a {
@@ -442,20 +442,21 @@
         content: '';
         position: absolute;
         top: 50%;
-        left: 0;
+        right: 0;
         background: {color:Background};
         height: 1px;
         display: block;
         width: 0;
-        z-index: 13;
-    }
-
-    .toggle-nav li a:hover:after {
-        width: 100%;
+        z-index: 15;
         transition: all .35s ease;
         -o-transition: all .35s ease;
         -moz-transition: all .35s ease;
         -webkit-transition: all .35s ease;
+    }
+
+    .toggle-nav li a:hover:after {
+        left: 0;
+        width: 100%;
     }
 
 
@@ -888,6 +889,77 @@
         margin-right: 0;
     }
 
+    /* loading */
+
+    .loader {
+        opacity: 0;
+        z-index: 9999;
+        display: block;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        top: 50%;
+        left: 50%;
+        background: linear-gradient( 135deg, {color:Select} 50%,  {color:Link Hover} 50%);
+        animation: loading .75s linear infinite;
+        -o-animation: loading .75s linear infinite;
+        -moz-animation: loading .75s linear infinite;
+        -webkit-animation: loading .75s linear infinite;
+    }
+
+    @keyframes loading {
+      from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-@keyframes loading {
+      from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: {color:Select};
+        z-index: 9997;
+        display: none;
+    }
+
+
+    @media only screen and (min-width: 768px) {
+        .progress-bar {
+            display: block;
+        }
+    }
+
+
+
       {CustomCSS}
     </style>
   </head>
@@ -896,6 +968,11 @@
     <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
     <div id="wrapper">
+    <div id="progress-bar" class="progress-bar"></div>
+        <div id="loading" class="loader-wrap">
+            <div class="loader"></div>
+        </div>
+
       <div id="container" class="clearfix">
 
       <!-- header -->
@@ -1228,6 +1305,20 @@
   }
 });
   </script>
+
+<!-- Scroll -->
+
+<script>
+    window.onscroll = function() {scrolling()};
+
+    function scrolling() {
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      document.getElementById("progress-bar").style.width = scrolled + "%";
+    }
+
+</script>
 
  <!-- Toggle Nav -->
 <script>
