@@ -423,6 +423,10 @@
         -o-transition: all .25s ease;
         -moz-transition: all .25s ease;
         -webkit-transition: all .25s ease;
+        animation: fadein .35s ease;
+        -o-animation: fadein .35s ease;
+        -moz-animation: fadein .35s ease;
+        -webkit-animation: fadein .35s ease;
     }
 
     .toggle-nav li {
@@ -864,6 +868,45 @@
     @-o-keyframes fadein {
         from { opacity: 0; }
         to   { opacity: 1; }
+    }
+
+    /* fadeOut */
+
+    .fadeout {
+        -webkit-animation: fadeout 2.5s ease; /* Safari, Chrome and Opera > 12.1*/
+       -moz-animation: fadeout 2.5s ease; /* Firefox < 16 */
+        -ms-animation: fadeout 2.5s ease; /* Internet Explorer */
+         -o-animation: fadeout 2.5s ease; /* Opera < 12.1 */
+            animation: fadeout 2.5s ease;
+    }
+
+    @keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+    }
+
+    /* Firefox < 16 */
+    @-moz-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+    }
+
+    /* Safari, Chrome and Opera > 12.1 */
+    @-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+    }
+
+    /* Internet Explorer */
+    @-ms-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+    }
+
+    /* Opera < 12.1 */
+    @-o-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
     }
 
     /* footer */
