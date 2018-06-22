@@ -830,63 +830,28 @@
         margin-bottom: 12px;
     }
 
-
-    /* fadeIn */
-
-    .fadein {
-        -webkit-animation: fadein 2.5s ease; /* Safari, Chrome and Opera > 12.1*/
-       -moz-animation: fadein 2.5s ease; /* Firefox < 16 */
-        -ms-animation: fadein 2.5s ease; /* Internet Explorer */
-         -o-animation: fadein 2.5s ease; /* Opera < 12.1 */
-            animation: fadein 2.5s ease;
-    }
-
-    @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-    }
-
-    /* Firefox < 16 */
-    @-moz-keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-    }
-
-    /* Safari, Chrome and Opera > 12.1 */
-    @-webkit-keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-    }
-
-    /* Internet Explorer */
-    @-ms-keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-    }
-
-    /* Opera < 12.1 */
-    @-o-keyframes fadein {
-        from { opacity: 0; }
-        to   { opacity: 1; }
-    }
-
-    /* fadeInTop */
+    /* fadeInTop @ home */
 
     .fadeintop {
-        animation: fadeintop .75s ease;
-        -o-animation: fadeintop .75s ease;
-        -moz-animation: fadeintop .75s ease;
-        -webkit-animation: fadeintop .75s ease;
+        animation: fadeintop 1s ease;
+        -o-animation: fadeintop 1s ease;
+        -moz-animation: fadeintop 1s ease;
+        -webkit-animation: fadeintop 1s ease;
         transition-timing-function: cubic-bezier(0.1, 0.7, 0.8, 1.0);
     }
 
     @keyframes fadeintop {
-        from {
+        0% {
             opacity: 0;
-            -webkit-transform: translate3d(0, 2%, 0);
-            transform: translate3d(0, 2%, 0);
+            -webkit-transform: translate3d(0, 5%, 0);
+            transform: translate3d(0, 5%, 0);
         }
-        to {
+
+        66% {
+            opacity: 0;
+        }
+
+        100% {
             opacity: 1;
             -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
@@ -894,19 +859,49 @@
     }
 
     @-webkit-keyframes fadeintop {
-        from {
+        0% {
             opacity: 0;
-            -webkit-transform: translate3d(0, 2%, 0);
-            transform: translate3d(0, 2%, 0);
+            -webkit-transform: translate3d(0, 5%, 0);
+            transform: translate3d(0, 5%, 0);
         }
-        to {
+
+        66% {
+            opacity: 0;
+        }
+
+        100% {
             opacity: 1;
             -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0);
         }
     }
 
-    /* fadeInBottom --*/
+    /* fadeintop @ permalink */
+
+    .fadeintop-2 {
+        animation: fadeintop-2 .75s ease;
+        -o-animation: fadeintop-2 .75s ease;
+        -moz-animation: fadeintop-2 .75s ease;
+        -webkit-animation: fadeintop-2 .75s ease;
+        transition-timing-function: cubic-bezier(0.1, 0.7, 0.8, 1.0);
+    }
+
+    @keyframes fadeintop-2 {
+        0% {
+            opacity: 0;
+            -webkit-transform: translate3d(0, 5%, 0);
+            transform: translate3d(0, 5%, 0);
+        }
+
+        100% {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+
+    /* fadeInBottom */
 
     .fadeinbottom {
         animation: fadeinbottom .75s ease;
@@ -930,6 +925,34 @@
         }
     }
 
+    /* fadeinleft */
+
+    .fadeinleft {
+        animation: fadeinleft .75s ease;
+        -o-animation: fadeinleft .75s ease;
+        -moz-animation: fadeinleft .75s ease;
+        -webkit-animation: fadeinleft .75s ease;
+        transition-timing-function: cubic-bezier(0.1, 0.7, 0.8, 1.0);
+    }
+
+
+    @keyframes fadeinleft {
+        0% {
+            opacity: 0;
+            -webkit-transform: translate3d(-15%, 0, 0);
+            transform: translate3d(-15%, 0, 0);
+        }
+
+        50% {
+            opacity:0;
+        }
+
+        100% {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
 
 
     /* footer */
@@ -1038,6 +1061,7 @@
         <div id="loading" class="loader-wrap">
             <div class="loader"></div>
         </div>
+
       <div id="container" class="clearfix">
 
       <!-- header -->
@@ -1045,7 +1069,7 @@
       <header class="clearfix">
 
           <div class="site-title {block:IndexPage}fadeinbottom{/block:Indexpage}"><h1><a href="/">{Title}</a></h1></div>
-          <div class="header-description"><p>{Description}</p></div>
+          <div class="header-description {block:IndexPage}fadeinleft anime-delay-1{/block:Indexpage}"><p>{Description}</p></div>
 
           <a href="javascript:void(0);" id="toggle-btn" class="toggle-btn">
             <div class="toggle-btn-inner">
@@ -1090,7 +1114,7 @@
 
       <main id="content" class="{block:IndexPage}indexpage{/block:IndexPage} {block:PermalinkPage}permalinkpage{/block:Permalinkpage} clearfix" role="main">
 
-        <div class="grid fadeintop">
+        <div class="grid {block:IndexPage}fadeintop{/block:IndexPage} {block:PermalinkPage}fadeintop-2{/block:PermalinkPage}">
           {block:IndexPage}<div class="grid-sizer"></div>{/block:IndexPage}
 
           {block:Posts}
