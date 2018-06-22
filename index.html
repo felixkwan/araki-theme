@@ -873,45 +873,63 @@
     /* fadeInTop */
 
     .fadeintop {
-        animation: fadeintop .25s ease-in;
-        -o-animation: fadeintop .25s ease-in;
-        -moz-animation: fadeintop .25s ease-in;
-        -webkit-animation: fadeintop .25s ease-in;
+        animation: fadeintop .75s ease;
+        -o-animation: fadeintop .75s ease;
+        -moz-animation: fadeintop .75s ease;
+        -webkit-animation: fadeintop .75s ease;
         transition-timing-function: cubic-bezier(0.1, 0.7, 0.8, 1.0);
     }
 
     @keyframes fadeintop {
         from {
             opacity: 0;
-            top: -150;
+            -webkit-transform: translate3d(0, 2%, 0);
+            transform: translate3d(0, 2%, 0);
         }
         to {
             opacity: 1;
-            top: 0;
-        }
-    }
-
-    @-o-keyframes fadeintop {
-        from {
-            opacity: 0;
-            top: -150;
-        }
-        to {
-            opacity: 1;
-            top: 0;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
         }
     }
 
     @-webkit-keyframes fadeintop {
         from {
             opacity: 0;
-            top: -150;
+            -webkit-transform: translate3d(0, 2%, 0);
+            transform: translate3d(0, 2%, 0);
         }
         to {
             opacity: 1;
-            top: 0;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
         }
     }
+
+    /* fadeInBottom --*/
+
+    .fadeinbottom {
+        animation: fadeinbottom .75s ease;
+        -o-animation: fadeinbottom .75s ease;
+        -moz-animation: fadeinbottom .75s ease;
+        -webkit-animation: fadeinbottom .75s ease;
+        transition-timing-function: cubic-bezier(0.1, 0.7, 0.8, 1.0);
+    }
+
+
+    @keyframes fadeinbottom {
+        from {
+            opacity: 0;
+            -webkit-transform: translate3d(0, -15%, 0);
+            transform: translate3d(0, -15%, 0);
+        }
+        to {
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
 
 
     /* footer */
@@ -1020,14 +1038,13 @@
         <div id="loading" class="loader-wrap">
             <div class="loader"></div>
         </div>
-
       <div id="container" class="clearfix">
 
       <!-- header -->
       <div id="header-wrap">
       <header class="clearfix">
 
-          <div class="site-title"><h1><a href="/">{Title}</a></h1></div>
+          <div class="site-title {block:IndexPage}fadeinbottom{/block:Indexpage}"><h1><a href="/">{Title}</a></h1></div>
           <div class="header-description"><p>{Description}</p></div>
 
           <a href="javascript:void(0);" id="toggle-btn" class="toggle-btn">
@@ -1073,7 +1090,7 @@
 
       <main id="content" class="{block:IndexPage}indexpage{/block:IndexPage} {block:PermalinkPage}permalinkpage{/block:Permalinkpage} clearfix" role="main">
 
-        <div class="grid">
+        <div class="grid fadeintop">
           {block:IndexPage}<div class="grid-sizer"></div>{/block:IndexPage}
 
           {block:Posts}
