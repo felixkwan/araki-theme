@@ -12,9 +12,6 @@
     {/block:Description}
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="alternate" type="application/rss+xml" href="{RSS}">
-    <link rel="shortcut icon" href="{Favicon}">
-
     <script src="https://static.tumblr.com/e6lc7yi/hRfmidqdw/modernizr.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -1292,6 +1289,7 @@
 			                <ul class="tags">
 			                    {block:Tags}<li><a href="{TagURL}" class="tag">#{Tag}</a></li>{/block:Tags}
 			                </ul>
+			                {block:PermalinkPage}
 			                {block:PermalinkPagination}
 			                    <ul class="pagination_permal">
 			                    {block:PreviousPost}
@@ -1304,7 +1302,7 @@
 
 			                </ul>
 			                {/block:PermalinkPagination}
-
+                            {/block:PermalinkPage}
 
 			                {block:NoteCount}
 			                <h2>{NoteCountwithLabel}</h2>
@@ -1322,8 +1320,8 @@
               </article>
           {/block:Posts}
 
-          {block:Pagination}
             {block:IndexPage}
+            {block:Pagination}
                     <div class="pagination-wrap">
                         <ul class="pagination">
                         {block:PreviousPage}
@@ -1335,8 +1333,8 @@
                         </ul>
 
                     </div>
+            {/block:Pagination}
             {/block:IndexPage}
-        {/block:Pagination}
 
         </div>
       </main>
