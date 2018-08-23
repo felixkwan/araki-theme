@@ -1288,13 +1288,29 @@
 			                <ul class="tags">
 			                    {block:Tags}<li><a href="{TagURL}" class="tag">#{Tag}</a></li>{/block:Tags}
 			                </ul>
+			                
+			                {block:PermalinkPagination}
+                        <ul class="pagination_permal">
+                        {block:PreviousPost}
+                        <li class="previous-post"><a href="{PreviousPost}">Previous Post &nbsp;<i class="fas fa-caret-right"></i></a></li>
+                        {/block:PreviousPost}
+
+                        {block:NextPost}
+                        <li class="newer-post"><a href="{NextPost}"><i class="fas fa-caret-left"></i>&nbsp; Newer Post</a></li>
+                        {/block:NextPost}
+
+                    </ul>
+                    {/block:PermalinkPagination}
 
 			                {block:NoteCount}
 			                <h2>{NoteCountwithLabel}</h2>
 			                {/block:NoteCount}
 
 			                {block:PostNotes} {PostNotes-16} {/block:PostNotes}
+
+
 			            </div>
+
 			       {/block:Permalinkpage}
 
 			     {/block:Date}
@@ -1319,21 +1335,6 @@
                     </div>
                     {/block:IndexPage}
 
-                  {block:PermalinkPage}
-                    {block:PermalinkPagination}
-                        <ul class="pagination_permal">
-                        {block:PreviousPost}
-                        <li class="previous-post"><a href="{PreviousPost}">Previous Post &nbsp;<i class="fas fa-caret-right"></i></a></li>
-                        {/block:PreviousPost}
-
-                        {block:NextPost}
-                        <li class="newer-post"><a href="{NextPost}"><i class="fas fa-caret-left"></i>&nbsp; Newer Post</a></li>
-                        {/block:NextPost}
-
-                    </ul>
-
-                    {/block:PermalinkPagination}
-                    {/block:PermalinkPage}
             {/block:Pagination}
 
         </div>
