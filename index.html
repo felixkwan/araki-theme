@@ -1278,6 +1278,7 @@
 
                 <div class="{block:Permalinkpage}post-meta-wrap{/block:Permalinkpage}">
                 {block:Date}
+
                  {block:Permalinkpage}
 			            <div class="post-meta_permal clearfix">
 			                <div class="date {select:Date}">
@@ -1287,18 +1288,6 @@
 			                <ul class="tags">
 			                    {block:Tags}<li><a href="{TagURL}" class="tag">#{Tag}</a></li>{/block:Tags}
 			                </ul>
-			                {block:PermalinkPagination}
-			                    <ul class="pagination_permal">
-			                    {block:PreviousPost}
-			                    <li class="previous-post"><a href="{PreviousPost}">Previous Post &nbsp;<i class="fas fa-caret-right"></i></a></li>
-			                    {/block:PreviousPost}
-
-			                    {block:NextPost}
-			                    <li class="newer-post"><a href="{NextPost}"><i class="fas fa-caret-left"></i>&nbsp; Newer Post</a></li>
-			                    {/block:NextPost}
-
-			                </ul>
-			                {/block:PermalinkPagination}
 
 			                {block:NoteCount}
 			                <h2>{NoteCountwithLabel}</h2>
@@ -1315,9 +1304,8 @@
 
               </article>
           {/block:Posts}
-
+{block:Pagination}
             {block:IndexPage}
-            {block:Pagination}
                     <div class="pagination-wrap">
                         <ul class="pagination">
                         {block:PreviousPage}
@@ -1329,8 +1317,24 @@
                         </ul>
 
                     </div>
+                    {/block:IndexPage}
+
+                  {block:PermalinkPage}
+                    {block:PermalinkPagination}
+                        <ul class="pagination_permal">
+                        {block:PreviousPost}
+                        <li class="previous-post"><a href="{PreviousPost}">Previous Post &nbsp;<i class="fas fa-caret-right"></i></a></li>
+                        {/block:PreviousPost}
+
+                        {block:NextPost}
+                        <li class="newer-post"><a href="{NextPost}"><i class="fas fa-caret-left"></i>&nbsp; Newer Post</a></li>
+                        {/block:NextPost}
+
+                    </ul>
+
+                    {/block:PermalinkPagination}
+                    {/block:PermalinkPage}
             {/block:Pagination}
-            {/block:IndexPage}
 
         </div>
       </main>
