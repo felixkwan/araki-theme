@@ -30,6 +30,7 @@
     <meta name="color:Link" content="#cccccc"/>
     <meta name="color:Link Hover" content="#3befff"/>
     <meta name="color:Link Visited" content="#363636"/>
+    <meta name="color:Nav border bottom" content="#EEEEEE">
 
     <meta name="text:Footer Text" content=""/>
     <meta name="text:Google Analytics ID" content=""/>
@@ -179,20 +180,6 @@
         transition-duration: 0.25s;
     }
 
-    #header-wrap {
-        margin: 20px;
-        transition: margin .25s ease;
-        -o-transition: margin .25s ease;
-        -moz-transition: margin .25s ease;
-        -webkit-transition: margin .25s ease;
-    }
-
-    @media only screen and (min-width: 768px) {
-        #header-wrap {
-            margin: 30px;
-        }
-    }
-
     header {
         padding: 0;
         margin: 0 auto;
@@ -200,7 +187,8 @@
 
     .site-title {
         height: 60px;
-        margin: 0 ;
+        margin-left: 24px;
+        margin-top: 48px;
         padding-top: 28px;
     }
 
@@ -241,7 +229,7 @@
 
     .header-description {
         width: 75%;
-        margin: 0;
+        margin-left: 24px;
         padding-bottom: 22px;
         color: #363636;
     }
@@ -249,7 +237,6 @@
     @media only screen and (min-width: 768px) {
         .header-description {
             width: 50%;
-            margin: 0;
             padding-bottom: 22px;
         }
     }
@@ -396,41 +383,58 @@
         width: 100%;
     }
 
-    #main-nav {
+    .main-nav {
         background: #fff;
-        z-index: 12;
-        margin: 0 auto;
+        z-index: 99;
+        padding: 0;
+        height: 100vh;
+        position: fixed;
+        max-width: 600px;
+        width: 100%;
+        opacity: 0;
         top: 0;
-        margin: 22px auto;
-        overflow: hidden;
-        z-index: 12;
-    }
-
-    .nav-hidden {
-        height: 0;
+        visibility: hidden;
+        transform: translate3d(-5%, 0, 0);
         transition: all .25s ease;
         -o-transition: all .25s ease;
         -moz-transition: all .25s ease;
         -webkit-transition: all .25s ease;
     }
 
-    .nav-show {
-        height: 208px;
-        transition: all .25s ease;
-        -o-transition: all .25s ease;
-        -moz-transition: all .25s ease;
-        -webkit-transition: all .25s ease;
-        animation: fadein .35s ease;
-        -o-animation: fadein .35s ease;
-        -moz-animation: fadein .35s ease;
-        -webkit-animation: fadein .35s ease;
+    .main-nav.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(0, 0, 0);
+        transition: all .55s ease;
+        -o-transition: all .55s ease;
+        -moz-transition: all .55s ease;
+        -webkit-transition: all .55s ease;
+    }
+
+    .main-nav:before {
+        content: '';
+    	position: absolute;
+    	left: 0;
+    	top: 0;
+    	width: 0;
+    	height: 0;
+    	border: 43px solid transparent;
+    	border-left-color: {color:Background};
+    	border-right: 0;
+    	border-top: 0;
+    	margin-top: -21.5px;
+    	margin-right: -43px;
+    }
+
+    .toggle-nav {
+        padding: 48px 0;
     }
 
     .toggle-nav li {
         display: block;
         padding: 6px 0;
-        margin: 0 20px 12px;
-        border-bottom: 1px solid {color:Background};
+        margin: 14px 24px;
+        border-bottom: 1px solid {color:Nav border bottom};
     }
 
     .toggle-nav li a {
@@ -479,7 +483,7 @@
 
     @media only screen and (min-width: 768px) {
         .grid {
-            margin: 0 30px;
+            margin: 0 24px;
         }
     }
 
@@ -1056,16 +1060,13 @@
             <div class="loader"></div>
         </div>
 
-      <div id="container" class="clearfix">
+      <div id="container" class="container clearfix">
 
       <!-- header -->
       <div id="header-wrap">
       <header class="clearfix">
 
-          <div class="site-title {block:IndexPage}fadeinbottom{/block:Indexpage}"><h1><a href="{BlogURL}">{Title}</a></h1></div>
-          <div class="header-description {block:IndexPage}fadeinleft anime-delay-1{/block:Indexpage}"><p>{Description}</p></div>
-
-          <a href="javascript:void(0);" id="toggle-btn" class="toggle-btn">
+      <a href="javascript:void(0);" id="toggle-btn" class="toggle-btn">
             <div class="toggle-btn-inner">
               <div><span></span></div>
               <div><span></span></div>
@@ -1074,7 +1075,7 @@
           </a>
 
           <!-- toggle nav -->
-      <nav id="main-nav" class="nav-hidden">
+      <nav id="main-nav" class="main-nav">
           <ul class="toggle-nav">
             {block:HasPages}
             {block:Pages}
@@ -1100,6 +1101,9 @@
           </form>
           {/block:IfShowSearch}
         </nav>
+
+          <div class="site-title {block:IndexPage}fadeinbottom{/block:Indexpage}"><h1><a href="{BlogURL}">{Title}</a></h1></div>
+          <div class="header-description {block:IndexPage}fadeinleft anime-delay-1{/block:Indexpage}"><p>{Description}</p></div>
 
       </div>
         </header>
@@ -1408,17 +1412,14 @@
 
  <!-- Toggle Nav -->
 <script>
-    var main_nav = $('#main-nav');
-    var menu_toggle = $('#toggle-btn');
+    var toggle = document.querySelector('.toggle-btn'),
+    body = document.querySelector('html'),
+    nav = document.querySelector('.main-nav');
 
-
-  // CSS Class toggles where transitions are supported
-  menu_toggle.click(function(){
-    main_nav.toggleClass('nav-show');
-    main_nav.toggleClass('nav-hidden');
-  });
-
-
+    toggle.onclick = function() {
+        nav.classList.toggle('show');
+        body.classList.toggle('lock');
+    }
 </script>
 
 </html>
