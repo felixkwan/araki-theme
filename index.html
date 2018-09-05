@@ -141,6 +141,10 @@
         overflow-x: hidden;
     }
 
+    .lock {
+        overflow: hidden;
+    }
+
     *::selection {
         background: {color:Select};
         color: #fff;
@@ -387,12 +391,13 @@
         background: #fff;
         z-index: 99;
         padding: 0;
-        height: 100vh;
+        min-height: 100vh;
         position: fixed;
         max-width: 600px;
         width: 100%;
         opacity: 0;
         top: 0;
+        overflow: hidden;
         visibility: hidden;
         transform: translate3d(-5%, 0, 0);
         transition: all .25s ease;
@@ -403,6 +408,8 @@
 
     .main-nav.show {
         opacity: 1;
+        height: 100%;
+        overflow-y: visible;
         visibility: visible;
         transform: translate3d(0, 0, 0);
         transition: all .55s ease;
@@ -1094,6 +1101,7 @@
             {block:IfShowArchive}
             <li><a href="/archive">{lang:Archive}</a></li>
             {/block:IfShowArchive}
+
           </ul>
           {block:IfShowSearch}
           <form action="/search" method="get" class="search">
