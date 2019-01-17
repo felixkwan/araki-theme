@@ -15,7 +15,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.0.4/jquery.imagesloaded.min.js"></script>
 
-<script src="https://static.tumblr.com/wgijwsy/jgemkyt9x/jquery.photoset-grid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/3.0.5/infinite-scroll.pkgd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoset-grid/1.0.1/jquery.photoset-grid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
@@ -35,6 +38,7 @@
     <meta name="text:Footer Text" content=""/>
     <meta name="text:Google Analytics ID" content=""/>
 
+    <meta name="if:Infinite Scroll" content="0"/>
     <meta name="if:Show Archive" content="1"/>
     <meta name="if:Show RSS" content="0"/>
     <meta name="if:Show Search" content="0"/>
@@ -497,6 +501,8 @@
     article {
         padding-top: 15px;
         margin-bottom: 60px;
+        transition: all .25s ease;
+        width: 100%;
     }
 
     article .content h2 {
@@ -838,6 +844,19 @@
         margin-bottom: 12px;
     }
 
+    {block:IfInfiniteScroll}
+    /* infinite scroll on load */
+
+    article.hide {
+        opacity: 0;
+        transform: translat3d(0, -100px, 0);
+    }
+
+    article.show {
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+    }
+    {/block:IfInfiniteScroll}
     /* fadeInTop @ home */
 
     .fadeintop {
@@ -1054,11 +1073,8 @@
             display: block;
         }
     }
-
-
-
-      {CustomCSS}
     </style>
+    <stype>{CustomCSS}</stype>
   </head>
   <body>
     <div id="wrapper">
@@ -1120,7 +1136,7 @@
 
       <main id="content" class="{block:IndexPage}indexpage{/block:IndexPage} {block:PermalinkPage}permalinkpage{/block:Permalinkpage} clearfix" role="main">
 
-        <div class="grid {block:IndexPage}fadeintop{/block:IndexPage} {block:PermalinkPage}fadeintop-2{/block:PermalinkPage}">
+        <div class="grid {block:IndexPage}fadeintop selector{/block:IndexPage} {block:PermalinkPage}fadeintop-2{/block:PermalinkPage}">
           {block:IndexPage}<div class="grid-sizer"></div>{/block:IndexPage}
 
           {block:Posts}
@@ -1335,7 +1351,7 @@
                         <li class="next-page"><a href="{PreviousPage}"><i class="fas fa-caret-left"></i>&nbsp;Newer Posts</a></li>
                         {/block:PreviousPage}
                         {block:NextPage}
-                        <li class="previous-page"><a href="{NextPage}">Older Posts&nbsp;<i class="fas fa-caret-right"></i></a></li>
+                        <li class="previous-page"><a href="{NextPage}" class="pagination_next">Older Posts&nbsp;<i class="fas fa-caret-right"></i></a></li>
                         {/block:NextPage}
                         </ul>
 
@@ -1387,27 +1403,41 @@
 
 <!-- photoset-grid -->
   <script>
-  $('.photoset-grid-lightbox').photosetGrid({
-  highresLinks: true,
-  rel: 'withhearts-gallery',
-  gutter: '2px',
+  $(function() {
+      var imgLoad;
+      var content = document.querySelector("article");
+      var $grid = $('.selector');
 
-  onComplete: function(){
-    $('.photoset-grid-lightbox').attr('style', '');
-    $('.photoset-grid-lightbox a').colorbox({
-      photo: true,
-      scalePhotos: true,
-      maxHeight:'90%',
-      maxWidth:'90%'
-    });
-  }
-});
+      $grid.isotope({
+          itemSelector: 'article',
+          percentPosition: true,
+          hiddenStyle: {
+            opacity: 0
+          },
+          visibleStyle: {
+            opacity: 1
+          },
+      });
+
+      imgLoad = imagesLoaded(".selector");
+
+      imgLoad.on('always', function() {
+          content.style.opacity = "1";
+      });
+      imgLoad.on('progress', function (instance, image) {
+          $('image.img').closest('.photoset-grid-lightbox').photosetGrid({
+          highresLinks: true,
+          gutter: '2px'
+        });
+            $grid.isotope();
+      });
+  })
   </script>
 
 <!-- Scroll -->
 
 <script>
-    window.onscroll = function() {scrolling()};
+    window.onscroll = function(){scrolling();};
 
     function scrolling() {
       var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -1429,5 +1459,37 @@
         body.classList.toggle('lock');
     }
 </script>
+
+{block:IfInfiniteScroll}
+<script>
+    $(function() {
+        var $grid = $('.selector');
+
+        $grid.isotope({
+          itemSelector: 'article',
+          percentPosition: true,
+          hiddenStyle: {
+            opacity: 0
+          },
+          visibleStyle: {
+            opacity: 1
+          },
+      });
+
+      var iso = $grid.data('isotope');
+
+        var $selector = $('.selector').infiniteScroll({
+            /* options... */
+            path: '.pagination_next',
+            append: 'article',
+            hideNav: '.pagination',
+            history: false,
+            prefill: true,
+            outlayer: iso,
+        });
+    })
+</script>
+{/block:IfInfiniteScroll}
+
 
 </html>
